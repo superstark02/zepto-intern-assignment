@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Layout } from "./components";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* MonkHood - Your Zen Professional Planner */}
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Layout />} />
+          <Route exact path="/:component" element={<Layout />} />
+          <Route exact path="/create-ad" element={<Layout />} />
+          <Route path="*" element={<Layout />} />
+          {/* <Route
+              exact
+              path="/user/:create-ad"
+              element={
+                  <SchedulerLayout />
+              }
+            /> */}
+          {/* <Route path="*" element={<Page404 />} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 }
