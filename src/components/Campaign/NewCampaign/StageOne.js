@@ -113,7 +113,6 @@ const StageOne = ({ handleSetStage }) => {
                 </div>
                 <div className="flex-1">
                   <button className="focus:outline-none flex flex-col">
-                    {/* <span className="absolute inset-0" aria-hidden="true" /> */}
                     <p className="text-sm font-medium text-gray-900">{campaign.name}</p>
                     <p className="text-xs text-gray-500 truncate">{campaign.desc}</p>
                   </button>
@@ -123,13 +122,15 @@ const StageOne = ({ handleSetStage }) => {
           </div>
         </div>
       </div>
-      <button
-        onClick={() => handleSetStage()}
-        type="button"
-        className="ml-[75vw] mt-5 py-2 px-8 order border-transparent rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-      >
-        Continue
-      </button>
+      <div className="flex justify-end mt-5">
+        <button
+          onClick={() => handleSetStage()}
+          type="button"
+          className="py-2 px-8 order border-transparent rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Continue
+        </button>
+      </div>
     </>
   );
 };

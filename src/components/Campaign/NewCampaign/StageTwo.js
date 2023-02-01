@@ -1,73 +1,81 @@
-import React from "react";
+import { useState } from "react";
+import { CheckIcon } from "@heroicons/react/solid";
 
-const people = [
+const products = [
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 1,
+    name: "Blueberry cake with raw toppings",
+    price: "Rs 2,290",
+    image: "/campaigns/product1.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 2,
+    name: "Chocolate truffle cake",
+    price: "Rs 2,190",
+    image: "/campaigns/product2.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 3,
+    name: "Brownie cake with fluffy cream",
+    price: "Rs 1,222",
+    image: "/campaigns/product3.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 4,
+    name: "Ferro rocher cake",
+    price: "Rs 1,234",
+    image: "/campaigns/product4.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 5,
+    name: "Custurd mixed with fruit cake",
+    price: "Rs 2,456",
+    image: "/campaigns/product5.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 6,
+    name: "Best raw toppings choco cake",
+    price: "Rs 2,345",
+    image: "/campaigns/product6.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 7,
+    name: "Green cup cakes",
+    price: "Rs 1,234",
+    image: "/campaigns/product7.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 8,
+    name: "Blueberry toppings cake",
+    price: "Rs 2,456",
+    image: "/campaigns/product8.png",
   },
   {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    id: 9,
+    name: "Strawberry cakes with blueberry",
+    price: "Rs 2,345",
+    image: "/campaigns/product9.png",
   },
-  // More people...
 ];
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
 const StageTwo = ({ handleSetStage }) => {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const handleSelectedProducts = (product) => {
+    let temp = [...selectedProducts];
+    if (temp.includes(product.id)) {
+      temp = temp.filter((item) => item !== product.id);
+      setSelectedProducts(temp);
+    } else {
+      temp.push(product.id);
+      setSelectedProducts(temp);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-white mt-5">
@@ -77,33 +85,49 @@ const StageTwo = ({ handleSetStage }) => {
             <span className="text-sm text-gray-400 ml-5">(Step 2 of 4)</span>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 border-t py-5">
-            {people.map((person, idx) => (
+            {products.map((product, idx) => (
               <div
                 key={idx}
-                className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                onClick={() => {
+                  handleSelectedProducts(product);
+                }}
+                className={classNames(
+                  selectedProducts.includes(product.id) ? "ring-2 ring-offset-2 ring-blue-500 hover:border-gray-400" : "",
+                  "relative rounded-lg border border-gray-300 bg-white px-3 py-5 shadow-sm flex items-center space-x-3"
+                )}
               >
                 <div className="flex-shrink-0">
-                  <img className="h-10 w-10 rounded-full" src={person.imageUrl} alt="" />
+                  <img className="" src={product.image} alt="" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <button className="focus:outline-none">
-                    <span className="absolute inset-0" aria-hidden="true" />
-                    <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                    <p className="text-sm text-gray-500 truncate">{person.role}</p>
+                <div className="flex-1">
+                  <button className="focus:outline-none flex flex-col">
+                    <p className="text-sm font-medium text-gray-900">{product.name}</p>
+                    <p className="text-xs text-gray-500 truncate">{product.price}</p>
                   </button>
                 </div>
+                <a
+                  href="#"
+                  className={classNames(
+                    selectedProducts.includes(product.id) ? "bg-blue-600" : "border border-gray-400",
+                    "relative w-5 h-5 p-1 flex items-center justify-center rounded-full"
+                  )}
+                >
+                  <CheckIcon className={classNames(selectedProducts.includes(product.id) ? "text-white" : "text-gray-400")} aria-hidden="true" />
+                </a>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <button
-        onClick={() => handleSetStage()}
-        type="button"
-        className="ml-[75vw] mt-5 py-2 px-8 order border-transparent rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-      >
-        Continue
-      </button>
+      <div className="flex justify-end mt-5">
+        <button
+          onClick={() => handleSetStage()}
+          type="button"
+          className="py-2 px-8 order border-transparent rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Continue
+        </button>
+      </div>
     </>
   );
 };
