@@ -105,15 +105,14 @@ const StageTwo = ({ handleSetStage }) => {
                     <p className="text-xs text-gray-500 truncate">{product.price}</p>
                   </button>
                 </div>
-                <a
-                  href="#"
+                <button
                   className={classNames(
                     selectedProducts.includes(product.id) ? "bg-blue-600" : "border border-gray-400",
                     "relative w-5 h-5 p-1 flex items-center justify-center rounded-full"
                   )}
                 >
                   <CheckIcon className={classNames(selectedProducts.includes(product.id) ? "text-white" : "text-gray-400")} aria-hidden="true" />
-                </a>
+                </button>
               </div>
             ))}
           </div>

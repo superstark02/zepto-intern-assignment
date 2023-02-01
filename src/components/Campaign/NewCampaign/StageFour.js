@@ -35,7 +35,7 @@ const StageFour = ({ handleSetStage }) => {
             <span className="text-sm text-gray-400 ml-5">(Step 4 of 4)</span>
           </div>
           <div className="min-w-full border-t py-5">
-            <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-4">
               {people.map((person) => (
                 <li key={person.email} className="col-span-1 bg-white rounded-lg border shadow divide-y divide-gray-200">
                   <button className="cursor:pointer hover:border-gray-400 rounded-lg focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
@@ -50,8 +50,8 @@ const StageFour = ({ handleSetStage }) => {
                       <span className="text-justify mb-2 text-sm">
                         We are the best bakery around you. Please like my page to get updates on existing offers and discounts.
                       </span>
-                      <img src={person.imageUrl} className="w-full" />
-                      <img src={"/campaigns/post-like.png"} className="w-full" />
+                      <img src={person.imageUrl} className="w-full" alt="" />
+                      <img src={"/campaigns/post-like.png"} className="w-full" alt="" />
                     </div>
                     <div className="rounded-lg">
                       <div className="-mt-px flex divide-x divide-gray-200">

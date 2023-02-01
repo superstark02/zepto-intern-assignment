@@ -1,15 +1,5 @@
 import React, { useState } from "react";
 import { Switch } from "@headlessui/react";
-import { LocationMarkerIcon } from "@heroicons/react/solid";
-
-const steps = [
-  { name: "Create account", description: "Vitae sed mi luctus laoreet.", href: "#", status: "complete" },
-  { name: "Create account", description: "Vitae sed mi luctus laoreet.", href: "#", status: "complete" },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 const StageThree = ({ handleSetStage }) => {
   const [lifetimeEnabled, setLifetimeEnabled] = useState(false);
@@ -25,7 +15,7 @@ const StageThree = ({ handleSetStage }) => {
           </div>
           <div className="min-w-full border-t py-5">
             <nav aria-label="Progress">
-              <ol role="list" className="overflow-hidden">
+              <ol className="overflow-hidden">
                 {/* {steps.map((step, stepIdx) => ( */}
                 <li className="pb-10 relative">
                   <div className="-ml-px absolute mt-0.5 top-4 left-4 w-0.5 h-full bg-gray-300" aria-hidden="true" />
@@ -87,7 +77,6 @@ const StageThree = ({ handleSetStage }) => {
                           </div>
                         </div>
                         <div>
-                          {/* slider to show range of currency */}
                           <div className="flex items-center w-full justify-between">
                             <span className="text-xs font-medium text-gray-700">Enter Campaigning Budget</span>
                             <select id="currency" name="currency" default="INR" className="border-transparent py-0 pr-0 text-xs">
@@ -312,7 +301,7 @@ const StageThree = ({ handleSetStage }) => {
                               placeholder="Search a name, place, address or coordinates"
                             />
                             <div className="absolute inset-y-0 right-0 pr-5 flex items-center pointer-events-none">
-                              <img src="/campaigns/gps.png" aria-hidden="true" />
+                              <img src="/campaigns/gps.png" aria-hidden="true" alt="" />
                             </div>
                           </div>
                         </div>
@@ -328,7 +317,6 @@ const StageThree = ({ handleSetStage }) => {
                     </div>
                   </div>
                 </li>
-                {/* ))} */}
               </ol>
             </nav>
           </div>

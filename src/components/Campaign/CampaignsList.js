@@ -14,59 +14,59 @@ const dummyCampaigns = [
     clicks: 300,
     budget: 3400,
     location: "Chennai",
-    platform: "/facebook_logo.png",
+    platform: "/campaigns/facebook-logo.svg",
     status: "Live Now",
   },
   {
     id: 2,
     on: false,
     date: "25 Jul 2020 - 01 Aug 2020",
-    name: "Blueberry Cake Campaign",
-    image: "/campaigns/photo1.png",
-    createdAt: "14 July",
-    clicks: 300,
+    name: "Chocolate Cake Campaign",
+    image: "/campaigns/photo2.png",
+    createdAt: "20 Jan",
+    clicks: 210,
     budget: 3400,
-    location: "Chennai",
-    platform: "/facebook_logo.png",
-    status: "Live Now",
+    location: "Coimbatore",
+    platform: "/campaigns/facebook-logo.svg",
+    status: "Paused",
   },
   {
     id: 3,
     on: false,
     date: "25 Jul 2020 - 01 Aug 2020",
-    name: "Blueberry Cake Campaign",
-    image: "/campaigns/photo1.png",
-    createdAt: "14 July",
-    clicks: 300,
+    name: "Brownie Cake Campaign",
+    image: "/campaigns/photo3.png",
+    createdAt: "12 Jun",
+    clicks: 123,
     budget: 3400,
-    location: "Chennai",
-    platform: "/facebook_logo.png",
-    status: "Live Now",
+    location: "Erode",
+    platform: "/campaigns/facebook-logo.svg",
+    status: "Exhausted",
   },
   {
     id: 4,
     on: false,
     date: "25 Jul 2020 - 01 Aug 2020",
-    name: "Blueberry Cake Campaign",
-    image: "/campaigns/photo1.png",
-    createdAt: "14 July",
-    clicks: 300,
+    name: "Pumpkin Cake Campaign",
+    image: "/campaigns/photo4.png",
+    createdAt: "28 Feb",
+    clicks: 435,
     budget: 3400,
-    location: "Chennai",
-    platform: "/facebook_logo.png",
+    location: "Coimbatore",
+    platform: "/campaigns/youtube-logo.svg",
     status: "Live Now",
   },
   {
     id: 5,
     on: false,
     date: "25 Jul 2020 - 01 Aug 2020",
-    name: "Blueberry Cake Campaign",
-    image: "/campaigns/photo1.png",
-    createdAt: "14 July",
-    clicks: 300,
+    name: "Cup Cake Campaign",
+    image: "/campaigns/photo5.png",
+    createdAt: "10 Jul",
+    clicks: 123,
     budget: 3400,
-    location: "Chennai",
-    platform: "/facebook_logo.png",
+    location: "Coimbatore",
+    platform: "/campaigns/google-logo.svg",
     status: "Live Now",
   },
 ];
@@ -77,6 +77,25 @@ function classNames(...classes) {
 
 const CampaignsList = () => {
   const [campaigns, setCampaigns] = useState(dummyCampaigns);
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const [isCheck, setIsCheck] = useState([]);
+
+  const handleSelectAll = () => {
+    setIsCheckAll(!isCheckAll);
+    setIsCheck(campaigns.map((li) => li.id));
+    if (isCheckAll) {
+      setIsCheck([]);
+    }
+  };
+
+  const handleClick = (id, checked) => {
+    //  const { id, checked } = e.target;
+    setIsCheck([...isCheck, id]);
+    if (!checked) {
+      setIsCheck(isCheck.filter((item) => item !== id));
+    }
+  };
+
   return (
     <div className="flex flex-col shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-white">
       {/* <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 p-3"> */}
@@ -148,11 +167,11 @@ const CampaignsList = () => {
               <tr>
                 <th scope="col" className="pl-1 py-3.5 text-left text-sm font-semibold text-gray-900">
                   <input
-                    id="comments"
-                    aria-describedby="comments-description"
-                    name="comments"
+                    id="check"
                     type="checkbox"
                     className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded"
+                    onChange={handleSelectAll}
+                    checked={isCheckAll}
                   />
                 </th>
                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
@@ -192,10 +211,11 @@ const CampaignsList = () => {
                 <tr key={idx}>
                   <td className="whitespace-nowrap pl-1 py-4 text-sm text-gray-500">
                     <input
-                      id="comments"
-                      aria-describedby="comments-description"
-                      name="comments"
+                      id="check"
+                      name="check"
                       type="checkbox"
+                      onChange={(e) => handleClick(campaign.id, e.target.checked)}
+                      checked={isCheck.includes(campaign.id)}
                       className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded"
                     />
                   </td>
@@ -224,9 +244,7 @@ const CampaignsList = () => {
                   </td>
                   <td className="whitespace-nowrap py-4 text-sm">
                     <div className="flex items-center">
-                      <div className="h-10 w-13 flex-shrink-0">
-                        <img className="h-10 w-13 rounded-lg" src={campaign.image} alt="" />
-                      </div>
+                      <img className="h-10 w-auto" src={campaign.image} alt="" />
                       <div className="ml-4">
                         <div className="font-medium text-gray-900">{campaign.name}</div>
                         <div className="text-gray-500">Created At {campaign.createdAt}</div>
@@ -237,19 +255,28 @@ const CampaignsList = () => {
                   <td className="whitespace-nowrap py-4 text-sm">{campaign.clicks}</td>
                   <td className="whitespace-nowrap py-4 text-sm">INR {campaign.budget}</td>
                   <td className="whitespace-nowrap py-4 text-sm">{campaign.location}</td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm">
-                    <img className="h-7 w-7 rounded-full" src={campaign.platform} />
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-center">
+                    <img src={campaign.platform} />
                   </td>
                   <td className="whitespace-nowrap py-4 text-sm text-gray-500">
-                    <span className="inline-flex rounded-full bg-green-100 px-4 py-1 text-xs font-semibold leading-5 text-green-800">
+                    <span
+                      className={classNames(
+                        campaign.status === "Live Now"
+                          ? "bg-green-100 text-green-800"
+                          : campaign.status === "Paused"
+                          ? "bg-yellow-100 text-yellow-600"
+                          : "bg-red-100 text-orange-600",
+                        "inline-flex rounded-full  px-4 py-1 text-xs font-semibold leading-5 "
+                      )}
+                    >
                       {campaign.status}
                     </span>
                   </td>
                   <td className="relative flex justify-around whitespace-nowrap pt-5 text-sm font-medium">
                     <button className="bg-transparent text-blue-600 hover:text-blue-900">
-                      <PencilIcon className="cursor-pointer bg-blue text-blue-600 hover:text-blue-900 w-6 h-6" />
+                      <PencilIcon className="cursor-pointer bg-blue text-blue-600 hover:text-blue-900 w-5 h-5" />
                     </button>
-                    <TrashIcon className="cursor-pointer bg-red text-red-600 hover:text-red-900 w-6 h-6" />
+                    <TrashIcon className="cursor-pointer bg-red text-red-600 hover:text-red-900 w-5 h-5" />
                   </td>
                 </tr>
               ))}
