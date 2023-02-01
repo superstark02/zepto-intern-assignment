@@ -256,7 +256,7 @@ const CampaignsList = () => {
                   <td className="whitespace-nowrap py-4 text-sm">INR {campaign.budget}</td>
                   <td className="whitespace-nowrap py-4 text-sm">{campaign.location}</td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-center">
-                    <img src={campaign.platform} />
+                    <img src={campaign.platform} alt="" />
                   </td>
                   <td className="whitespace-nowrap py-4 text-sm text-gray-500">
                     <span
