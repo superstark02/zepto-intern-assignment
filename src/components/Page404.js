@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Page404 = () => {
   return (
     <div>
-      <div className="min-h-full pt-16 pb-12 flex flex-col bg-white">
+      <div className="min-h-[82vh] pt-16 pb-12 flex flex-col">
         <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex-shrink-0 flex justify-center">
             <a href="/" className="inline-flex">

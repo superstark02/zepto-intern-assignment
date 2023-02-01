@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/outline";
 import CampaignsList from "./CampaignsList";
+import NewCampaign from "./NewCampaign/NewCampaign";
 
 const Campaign = () => {
   const [addCampaign, setAddCampaign] = useState(false);
 
   return (
     <>
-      <div className="w-full flex justify-between mx-auto px-4 sm:px-6 md:px-8 ">
+      <div className="w-full flex justify-between mx-auto px-4 sm:px-6 md:px-8">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">{addCampaign === false ? "Your Campaigns" : "Your Ad Campaign"}</h1>
           <span className="text-sm text-gray-500">
@@ -34,7 +35,7 @@ const Campaign = () => {
         )}
       </div>
       <div className="w-full mx-auto px-4 sm:px-6 md:px-8">
-        <div className="py-4">{addCampaign === false ? <CampaignsList /> : <div>Add a Campaign</div>}</div>
+        <div className="py-4">{addCampaign === false ? <CampaignsList /> : <NewCampaign handleCompleteAdding={() => setAddCampaign(!addCampaign)} />}</div>
       </div>
     </>
   );

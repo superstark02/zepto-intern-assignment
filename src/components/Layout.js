@@ -238,7 +238,7 @@ export default function Layout() {
           </div>
 
           <main className="flex-1">
-            <div className="py-6">{component === "campaign" || component === undefined ? <Campaign /> : <Page404 />}</div>
+            <div className="py-6 bg-[#f7f9ff]">{component === "campaign" || component === undefined ? <Campaign /> : <Page404 />}</div>
           </main>
         </div>
       </div>
